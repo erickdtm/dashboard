@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+from babel.numbers import format_currency
 sns.set(style='dark')
 
 def create_monthly_order(df):
@@ -16,7 +17,7 @@ def create_monthly_order(df):
     return monthly_orders_df
 
 def create_weather(df):
-    weather_df = df.groupby(by="weathersit").cnt.nunique().reset_index()
+    weather_df = df.groupby(by="weathersit").cnt.sum().reset_index()
     weather_df.rename(columns={
         "cnt": "order_count"
     }, inplace=True)
@@ -35,7 +36,7 @@ for column in datetime_columns:
 
 min_date = day_df["dteday"].min()
 max_date = day_df["dteday"].max()
- 
+
 with st.sidebar:
     
     
@@ -80,7 +81,6 @@ ax.tick_params(axis='y', labelsize=20)
 ax.tick_params(axis='x', labelsize=15, rotation=45)
  
 st.pyplot(fig)
-
 
 
 st.subheader("Pengaruh antara cuaca dengan performa rental")
