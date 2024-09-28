@@ -23,8 +23,8 @@ def create_weather(df):
     
     return weather_df
 
-day_df = pd.read_csv("Bike-sharing-dataset\day.csv")
-hour_df = pd.read_csv("Bike-sharing-dataset\hour.csv")
+day_df = pd.read_csv("Bike-sharing-dataset/day.csv")
+hour_df = pd.read_csv("Bike-sharing-dataset/hour.csv")
 
 datetime_columns = ["dteday"]
 day_df.sort_values(by="dteday", inplace=True)
